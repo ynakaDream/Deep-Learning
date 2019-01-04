@@ -1,0 +1,51 @@
+------------------------------
+Epoch 1
+*** Accuracy of classes (%) ***
+	Airplane : 63.1
+	Bird : 18.9
+	Car : 53.6
+	Cat : 34.2
+	Deer : 46.4
+	Dog : 7.9
+	Horse : 44.6
+	Monkey : 34.0
+	Ship : 56.5
+	Truck : 47.6
+
+*** TOTAL ACCURACY *** 
+	40.7 %
+
+------------------------------
+Epoch 2
+*** Accuracy of classes (%) ***
+	Airplane : 59.5
+	Bird : 27.9
+	Car : 54.1
+	Cat : 60.1
+	Deer : 42.1
+	Dog : 15.5
+	Horse : 43.2
+	Monkey : 31.4
+	Ship : 70.6
+	Truck : 44.9
+
+*** TOTAL ACCURACY *** 
+	44.9 %
+
+------------------------------
+Epoch 3
+*** Accuracy of classes (%) ***
+	Airplane : 70.9
+	Bird : 47.8
+	Car : 68.1
+	Cat : 52.9
+	Deer : 26.6
+	Dog : 8.5
+	Horse : 50.8
+	Monkey : 43.9
+	Ship : 61.0
+	Truck : 47.5
+
+*** TOTAL ACCURACY *** 
+	47.8 %
+
