@@ -8,7 +8,7 @@ import os
 '''
                          MNIST PROCESSING FILE
                 
-* MNIST datas are downloaded from http://yann.lecun.com/exdb/mnist/
+* MNIST data are downloaded from http://yann.lecun.com/exdb/mnist/
 
 * The downloaded files are saved to a dataset directory
 
@@ -45,13 +45,13 @@ def file_checker():
     print('The MNIST datasets was downloaded !!')
 
     if not os.path.exists(save_pkl_file):
-        datas = {}
+        data = {}
         for key in mnist_file:
             if 'img' in key:
-                datas[key] = file_read(mnist_file[key], offset=16)
+                data[key] = file_read(mnist_file[key], offset=16)
             if 'label' in key:
-                datas[key] = file_read(mnist_file[key], offset=8)
-        create_pickle_file(datas)
+                data[key] = file_read(mnist_file[key], offset=8)
+        create_pickle_file(data)
 
 
 def download(file_name):
@@ -72,12 +72,12 @@ def file_read(file_name, offset):
     return data
 
 
-def create_pickle_file(datas):
-    for key in datas:
+def create_pickle_file(data):
+    for key in data:
         if 'img' in key:
-            datas[key] = datas[key].reshape(-1, 784)
+            data[key] = data[key].reshape(-1, 784)
         with open(file_dir + save_pkl_file, 'wb') as f:
-            pickle.dump(datas, f)
+            pickle.dump(data, f)
 
     print(save_pkl_file + ' was created.')
     print('These were saved to a dataset directory.\n')
@@ -108,28 +108,28 @@ def mnist_load(normalized=True, flatten=True, one_hot=False, samples_pixel=True)
         file_checker()
 
     with open(file_dir + save_pkl_file, 'rb') as f:
-        datas = pickle.load(f)
+        data = pickle.load(f)
 
     if normalized:
         for key in ('train_img', 'test_img'):
-            datas[key] = datas[key].astype(np.float32)
-            datas[key] /= 255.0
+            data[key] = data[key].astype(np.float32)
+            data[key] /= 255.0
 
     if not flatten:
         for key in ('train_img', 'test_img'):
-            datas[key] = datas[key].reshape(-1, 1, 28, 28)
+            data[key] = data[key].reshape(-1, 1, 28, 28)
 
     if one_hot:
         for key in ('train_label', 'test_label'):
-            datas[key] = change_one_hot_label(datas[key])
+            data[key] = change_one_hot_label(data[key])
 
     if not samples_pixel:
-        datas['train_img'] = datas['train_img'].T
-        datas['train_label'] = datas['train_label'].T
-        datas['test_img'] = datas['test_img'].T
-        datas['test_label'] = datas['test_label'].T
+        data['train_img'] = data['train_img'].T
+        data['train_label'] = data['train_label'].T
+        data['test_img'] = data['test_img'].T
+        data['test_label'] = data['test_label'].T
 
-    return (datas['train_img'], datas['train_label']), (datas['test_img'], datas['test_label'])
+    return (data['train_img'], data['train_label']), (data['test_img'], data['test_label'])
 
 
 if __name__ == '__main__':
